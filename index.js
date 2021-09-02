@@ -2,17 +2,17 @@ Dom.ctx.textAlign = "center";
 Dom.ctx.fillStyle = "rgba(11,156,49,0.6";
 Dom.ctx.fillRect(0, 0, 1500, 750);
 
-const driver = new Driver(20, 20);
-console.log(driver.east);
-console.log(driver.image);
-console.log(driver.x);
+const driver = new Van(20, 20);
+console.log(driver.image)
 render(driver);
 
 function render(obj) {
-  const image = new Image();
-  image.src = obj.image;
-  image.addEventListener('load', function() {
-    Dom.ctx.drawImage(image, obj.x, obj.y);
+  const {x, y, image, dx, dy} = obj
+  console.log(image);
+  const pic = new Image();
+  pic.src = image;
+  pic.addEventListener('load', function() {
+    Dom.ctx.drawImage(pic, x, y, dx, dy);
   }, false)
 }
 

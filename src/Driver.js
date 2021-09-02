@@ -4,6 +4,8 @@ class Driver {
     this._x = vanX - 10;
     this._y = vanY;
     this.image = this.east;
+    this._dx = 100;
+    this._dy = 100;
   }
 
   get east() { return 'images/Drivers/EastDriver.gif'};
@@ -12,4 +14,8 @@ class Driver {
   get west() { return 'images/Drivers/WestDriver.gif'};
   get x() {return this._x};
   get y() {return this._y};
+  get dx() {return this._dx};
+  get dy() {return this._dy};
+  set x(x) {this._x = x};
+  set y(y) {this._y = y};
 }
