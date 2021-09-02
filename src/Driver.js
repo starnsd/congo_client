@@ -1,12 +1,14 @@
 class Driver {
 
   constructor(vanX, vanY) {
-    this._x = vanX - 10;
+    this._x = vanX - 50;
     this._y = vanY;
     this.image = this.east;
     this._dx = 100;
     this._dy = 100;
   }
+
+  static isParked = false;
 
   get east() { return 'images/Drivers/EastDriver.gif'};
   get north() { return 'images/Drivers/NorthDriver.gif'};
