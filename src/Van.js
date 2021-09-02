@@ -6,12 +6,14 @@ class Van {
     this.image = this.east
     this._dx = 100;
     this._dy = 100;
+    this._isDriving = true;
   }
 
-  get east() { return 'images/Vans/EastVanDriving.gif'};
-  get north() { return 'images/Vans/NorthVanDriving.gif'};
-  get south() { return 'images/Vans/SouthVanDriving.gif'};
-  get west() { return 'images/Vans/WestVanDriving.gif'};
+  get name() {return "van"};
+  get east() { return (this._isDriving ? 'images/Vans/EastVanDriving.gif' : 'images/Vans/EastVanParked.gif')};
+  get north() { return (this._isDriving ? 'images/Vans/NorthVanDriving.gif' : 'images/Vans/NorthVanParked.gif')};
+  get south() { return (this._isDriving ? 'images/Vans/SouthVanDriving.gif' : 'images/Vans/SouthVanParked.gif')};
+  get west() { return (this._isDriving ? 'images/Vans/WestVanDriving.gif' : 'images/Vans/WestVanParked.gif')};
   get x() {return this._x};
   get y() {return this._y};
   get dx() {return this._dx};

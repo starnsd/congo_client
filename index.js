@@ -4,8 +4,12 @@ Dom.ctx.fillRect(0, 0, 1500, 750);
 
 const van = new Van(20, 20);
 const driver = new Driver(van.x, van.y);
+const house = new House(50, 50);
 render(van);
 render(driver);
+render(house);
+
+
 
 
 

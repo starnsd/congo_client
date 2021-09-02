@@ -10,6 +10,7 @@ class Driver {
 
   static isParked = false;
 
+  get name() {return "driver"}
   get east() { return 'images/Drivers/EastDriver.gif'};
   get north() { return 'images/Drivers/NorthDriver.gif'};
   get south() { return 'images/Drivers/SouthDriver.gif'};
