@@ -3,19 +3,20 @@ class Driver {
   constructor(van) {
     this._x = van.x - 50;
     this._y = van.y;
-    this.image = this.east;
     this._dx = 25;
     this._dy = 25;
+    this.hasPackage = true;
+    this.image = this.east;
     this.constructor.all.push(this)
   }
 
   static all = [];
 
   get name() {return "driver"}
-  get east() { return 'images/Drivers/EastDriver.gif'};
-  get north() { return 'images/Drivers/NorthDriver.gif'};
-  get south() { return 'images/Drivers/SouthDriver.gif'};
-  get west() { return 'images/Drivers/WestDriver.gif'};
+  get east() { return (this.hasPackage ? 'images/Drivers/EastDriver.gif' : 'images/Drivers/EastDriverEmpty.gif')};
+  get north() { return (this.hasPackage ? 'images/Drivers/NorthDriver.gif' : 'images/Drivers/NorthDriverEmpty.gif')};
+  get south() { return (this.hasPackage ? 'images/Drivers/SouthDriver.gif' : 'images/Drivers/SouthDriverEmpty.gif')};
+  get west() { return (this.hasPackage ? 'images/Drivers/WestDriver.gif' : 'images/Drivers/WestDriverEmpty.gif')};
   get x() {return this._x};
   get y() {return this._y};
   get dx() {return this._dx};

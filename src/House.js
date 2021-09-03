@@ -4,10 +4,7 @@ class House {
     this._x = parseInt(x);
     this._y = parseInt(y);
     this._hasDelivery = (parseInt(delivery) == 1)
-    console.log(direction)
-    console.log(this.houseImage(direction))
     this.image = this.houseImage(direction)
-    console.log(this.image)
     this._dx = 50;
     this._dy = 50;
     this._hasDog = false

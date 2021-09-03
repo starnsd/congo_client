@@ -28,8 +28,8 @@ class Van {
   }
 
   buckleUp(driver) {
-    let v = this; 
-    let d = driver; 
+    let v = this;
+    let d = driver;
     if (!(v.x > d.x + d.dx || v.x + v.dx < d.x || v.y > d.y + d.dy || v.y + v.dy < d.y)) {
       this.toggleDriver();
     }
