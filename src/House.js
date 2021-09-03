@@ -36,17 +36,10 @@ class House {
     return picture;
   }
 
-  get east() {return (this._hasDelivery ? 'images/Houses/HouseEastSelected.gif' : 'images/Houses/HouseEast.gif')}
-  get west() {return (this._hasDelivery ? 'images/Houses/HouseWestSelected.gif' : 'images/Houses/HouseWest.gif')}
-
   get x() {return this._x};
   get y() {return this._y};
   get dx() {return this._dx};
   get dy() {return this._dy};
   get hasDeliver() {return this._hasDelivery}
 
-
-
-
-  
 }
