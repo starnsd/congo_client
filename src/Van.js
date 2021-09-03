@@ -4,8 +4,8 @@ class Van {
     this._x = x;
     this._y = y;
     this.image = this.east
-    this._dx = 100;
-    this._dy = 100;
+    this._dx = 25;
+    this._dy = 25;
     this._isDriving = true;
   }
 
@@ -20,4 +20,46 @@ class Van {
   get dy() {return this._dy};
   set x(x) {this._x = x};
   set y(y) {this._y = y};
+  get isDriving() {return this._isDriving}
+
+  toggleDriver() {
+    this._isDriving = (!this._isDriving)
+    return (this._isDriving ? Driver.all.pop() : new Driver(this))
+  }
+
+  buckleUp(driver) {
+    let v = this; //r2
+    let d = driver; //r1
+    if (!(v.x > d.x + d.dx || v.x + v.dx < d.x || v.y > d.y + d.dy || v.y + v.dy < d.y)) {
+      this.toggleDriver();
+    }
+// dx = width, dy = height
+  }
+
+  move(keyCode) {
+    switch (keyCode) {
+      case 39:
+        this._x += 6;
+        this.image = this.east;
+        break;
+      case 38:
+        this._y -= 6;
+        this.image = this.north;
+        break;
+      case 37:
+        this._x -= 6;
+        this.image = this.west;
+        break;
+      case 40:
+        this._y += 6;
+        this.image = this.south;
+        break;
+      case 32:
+        this.toggleDriver();
+        break;
+      default:
+        break;
+      }
+  }
+
 }

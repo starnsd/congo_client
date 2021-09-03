@@ -4,11 +4,12 @@ class Driver {
     this._x = van.x - 50;
     this._y = van.y;
     this.image = this.east;
-    this._dx = 100;
-    this._dy = 100;
+    this._dx = 25;
+    this._dy = 25;
+    this.constructor.all.push(this)
   }
 
-  static isParked = false;
+  static all = [];
 
   get name() {return "driver"}
   get east() { return 'images/Drivers/EastDriver.gif'};
