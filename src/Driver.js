@@ -1,8 +1,8 @@
 class Driver {
 
-  constructor(vanX, vanY) {
-    this._x = vanX - 50;
-    this._y = vanY;
+  constructor(van) {
+    this._x = van.x - 50;
+    this._y = van.y;
     this.image = this.east;
     this._dx = 100;
     this._dy = 100;
@@ -21,4 +21,31 @@ class Driver {
   get dy() {return this._dy};
   set x(x) {this._x = x};
   set y(y) {this._y = y};
+
+  move(keyCode) {
+    switch (keyCode) {
+      case 39:
+        this._x += 2;
+        this.image = this.east;
+        break;
+      case 38:
+        this._y -= 2;
+        this.image = this.north;
+        break;
+      case 37:
+        this._x -= 2;
+        this.image = this.west;
+        break;
+      case 40:
+        this._y += 2;
+        this.image = this.south;
+        break;
+      default:
+        break;
+    }
+  // e.keyCode == 39 is right
+  // e.keyCode == 38 is up
+  // e.keyCode == 37 is left
+  // e.keyCode == 40 is down
+  }
 }

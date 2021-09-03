@@ -9,9 +9,11 @@ class House {
     this._hasDelivery = false
     this._hasDog = false
     this.constructor.all.push(this)
+    this.name = `house${this.constructor.all.length}`
   }
 
   get east() {return (this._hasDelivery ? 'images/Houses/HouseEastSelected.gif' : 'images/Houses/HouseEast.gif')}
+  get west() {return (this._hasDelivery ? 'images/Houses/HouseWestSelected.gif' : 'images/Houses/HouseWest.gif')}
 
   get x() {return this._x};
   get y() {return this._y};
