@@ -1,9 +1,10 @@
 Dom.ctx.textAlign = "center";
-Dom.ctx.fillStyle = "rgba(11,156,49,0.6)";
-Dom.ctx.fillRect(0, 0, 1500, 750);
+
 
 const van = new Van(20, 20);
 const house = new House(100, 100, "south", 1);
+const road = new Road(0, 350, "up")
+console.log(road)
 render(van);
 render(house);
 
@@ -18,6 +19,7 @@ document.body.addEventListener("keydown", function(e) {
   render(house);
   render(van);
   render(player);
+  render(road);
 })
 // window.requestAnimationFrame()
 
@@ -25,6 +27,8 @@ document.body.addEventListener("keydown", function(e) {
 function render(obj) {
   Dom.ctx.fillStyle = "rgba(11,156,49,0.6)";
   Dom.ctx.fillRect(0, 0, 1500, 750);
+  Dom.ctx.fillStyle = "rgba(128,128,128, 100)"
+  Dom.ctx.fillRect(0, 350, 500, 50)
   const {x, y, image} = obj
   const pic = new Image();
   pic.src = image;
