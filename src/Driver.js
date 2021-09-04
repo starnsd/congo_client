@@ -5,7 +5,7 @@ class Driver {
     this._y = van.y;
     this._dx = 25;
     this._dy = 25;
-    this.hasPackage = true;
+    this._hasPackage = true
     this.image = this.east;
     this.constructor.all.push(this)
   }
@@ -13,10 +13,12 @@ class Driver {
   static all = [];
 
   get name() {return "driver"}
-  get east() { return (this.hasPackage ? 'images/Drivers/EastDriver.gif' : 'images/Drivers/EastDriverEmpty.gif')};
-  get north() { return (this.hasPackage ? 'images/Drivers/NorthDriver.gif' : 'images/Drivers/NorthDriverEmpty.gif')};
-  get south() { return (this.hasPackage ? 'images/Drivers/SouthDriver.gif' : 'images/Drivers/SouthDriverEmpty.gif')};
-  get west() { return (this.hasPackage ? 'images/Drivers/WestDriver.gif' : 'images/Drivers/WestDriverEmpty.gif')};
+  get hasPackage() { this._hasPackage }
+  set hasPackage(value) { this._hasPackage = value}
+  get east() { return (this._hasPackage ? 'images/Drivers/EastDriver.gif' : 'images/Drivers/EastDriverEmpty.gif')};
+  get north() { return (this._hasPackage ? 'images/Drivers/NorthDriver.gif' : 'images/Drivers/NorthDriverEmpty.gif')};
+  get south() { return (this._hasPackage ? 'images/Drivers/SouthDriver.gif' : 'images/Drivers/SouthDriverEmpty.gif')};
+  get west() { return (this._hasPackage ? 'images/Drivers/WestDriver.gif' : 'images/Drivers/WestDriverEmpty.gif')};
   get x() {return this._x};
   get y() {return this._y};
   get dx() {return this._dx};
@@ -49,5 +51,8 @@ class Driver {
   // e.keyCode == 38 is up
   // e.keyCode == 37 is left
   // e.keyCode == 40 is down
+  }
+  placePackage() {
+    this._hasPackage = false;
   }
 }

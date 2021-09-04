@@ -33,6 +33,22 @@ class House {
     return picture;
   }
 
+  makeDelivery(driver) {
+    if (driver instanceof Driver && driver._hasPackage && this._hasDelivery) {
+      let h = this;
+      let d = driver;
+      if (!(h.x > d.x + d.dx || h.x + h.dx < d.x || h.y > d.y + d.dy || h.y + h.dy < d.y)) {
+        this.successfulDelivery(driver);
+      }
+    }    
+  }
+
+  successfulDelivery(driver) {
+    driver.placePackage();
+    this._hasDelivery = false;
+    this.image = this.houseImage(this._direction)
+  }
+
   get x() {return this._x};
   get y() {return this._y};
   get dx() {return this._dx};
