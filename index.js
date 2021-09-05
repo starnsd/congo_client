@@ -37,11 +37,23 @@ document.body.addEventListener("keydown", function(e) {
       van.buckleUp(player);
       House.all.forEach(house => house.makeDelivery(player))
     }
-    Dom.ctx.clearRect(0,0, canvas.width, canvas.height);
-    House.all.forEach(house => render(house));
-    render(van);
-    render(player);
+    //Dom.ctx.clearRect(0,0, canvas.width, canvas.height);
+    //House.all.forEach(house => render(house));
+    //render(van);
+    //render(player);
 })
+
+function paint() {
+  Dom.ctx.clearRect(0,0, canvas.width, canvas.height);
+  House.all.forEach(house => render(house));
+  render(van)
+  let player = (!!Driver.all[0] ? Driver.all[0] : false)
+  if (!!player) {
+    render(player);
+  }
+  window.requestAnimationFrame(paint)
+}
+paint()
 
 // window.requestAnimationFrame()
 
