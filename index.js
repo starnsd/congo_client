@@ -44,6 +44,7 @@ document.body.addEventListener("keydown", function(e) {
 })
 
 function paint() {
+  game.frame++
   Dom.ctx.clearRect(0,0, canvas.width, canvas.height);
   House.all.forEach(house => render(house));
   render(van)
@@ -51,14 +52,16 @@ function paint() {
   if (!!player) {
     render(player);
   }
+  console.log(game.frame)
   window.requestAnimationFrame(paint)
 }
-paint()
+window.requestAnimationFrame(paint)
 
 // window.requestAnimationFrame()
 
 
 function render(obj) {
+  let sprites = [];
   Dom.ctx.fillStyle = "rgba(11,156,49,0.6)";
   Dom.ctx.fillRect(0, 0, 1500, 750);
   Dom.ctx.fillStyle = "rgba(128,128,128, 100)"
@@ -72,6 +75,12 @@ function render(obj) {
   const pic = new Image();
   pic.src = image;
   pic.addEventListener('load', function() {
-    Dom.ctx.drawImage(pic, x, y, 100, 100);
+    sprites.push({pic, x, y});
   }, false)
+  sprites.forEach(sprite => draw(sprite))
+}
+
+function draw(obj) {
+  const {pic, x, y} = obj;
+  Dom.ctx.drawImage(pic, x, y, 100, 100); 
 }
