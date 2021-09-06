@@ -7,7 +7,10 @@ class Van {
     this._dx = 25;
     this._dy = 25;
     this._isDriving = true;
+    this.constructor.all.push(this)
   }
+
+  static all = [];
 
   get name() {return "van"};
   get east() { return (this._isDriving ? 'images/Vans/EastVanDriving.gif' : 'images/Vans/EastVanParked.gif')};
@@ -59,6 +62,14 @@ class Van {
       default:
         break;
       }
+  }
+
+  render() {
+    const pic = new Image();
+    pic.src = this.image;
+    pic.addEventListener('load', function() {
+      Dom.ctx.drawImage(pic, this.x, this.y, 100, 100);
+    }.bind(this), false)
   }
 
 }

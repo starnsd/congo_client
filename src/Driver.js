@@ -55,4 +55,12 @@ class Driver {
   placePackage() {
     this._hasPackage = false;
   }
+
+  render() {
+    const pic = new Image();
+    pic.src = this.image;
+    pic.addEventListener('load', function() {
+      Dom.ctx.drawImage(pic, this.x, this.y, 100, 100);
+    }.bind(this), false)
+  }
 }
