@@ -37,7 +37,6 @@ class House {
      const pic = new Image();
      pic.src = this.image;
      pic.addEventListener('load', function() {
-       console.log(`${this.name} , x ${this.x} , y ${this.y}`)
        Dom.ctx.drawImage(pic, this.x, this.y, 100, 100);
      }.bind(this), false)
    }

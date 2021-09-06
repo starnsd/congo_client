@@ -2,6 +2,19 @@ class Location {
 
   static stateChange = true
 
+  static timer = 120;
+
+  static gameOver = false;
+
+  static countDown = setInterval(function() {
+      console.log(this.timer);
+      this.timer -= 1;
+      if (this.timer <= 0) {
+        console.log("game Over!")
+        return clearInterval(this.countDown)
+      }
+  }.bind(this), 1000)
+
   static paint() {
     if (!!this.stateChange) {
       Dom.ctx.clearRect(0,0, canvas.width, canvas.height);
@@ -13,6 +26,8 @@ class Location {
       Dom.ctx.fillRect(550, 125, 800, 50); //road
       Dom.ctx.fillRect(1300, 125, 50, 500); //road
       Dom.ctx.fillRect(550, 575, 800, 50);  //road
+      Dom.ctx.fillRect(825, 125, 50, 500); //road
+      Dom.ctx.fillRect(875, 350, 425, 50)
       Van.all[0].render();
       if (!Van.all[0].isDriving) {
         Driver.all[0].render();
@@ -35,6 +50,17 @@ class Location {
       House.all[15].render();
       House.all[16].render();
       House.all[17].render();
+      House.all[18].render();
+      House.all[19].render();
+      House.all[20].render();
+      House.all[21].render();
+      House.all[22].render();
+      House.all[23].render();
+      House.all[24].render();
+      House.all[25].render();
+      House.all[26].render();
+      House.all[27].render();
+      House.all[28].render();
     }
     this.stateChange = false
   }
@@ -58,5 +84,17 @@ class Location {
     new House(1360, 400, "west", 0);
     new House(1360, 475, "west", 0);
     new House(1360, 550, "west", 1);
+    new House(475, 630, "north", 0);
+    new House(550, 630, "north", 1);
+    new House(625, 630, "north", 0);
+    new House(700, 630, "north", 0);
+    new House(775, 630, "north", 1);
+    new House(850, 630, "north", 0);
+    new House(925, 630, "north", 0);
+    new House(1000, 630, "north", 1);
+    new House(1075, 630, "north", 1);
+    new House(1150, 630, "north", 1);
+    new House(1225, 630, "north", 0);
+    
   }
 }

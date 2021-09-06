@@ -7,6 +7,7 @@ const game = {
 const van = new Van(14, 326);
 Location.createHouses()
 Location.paint()
+Location.countDown
 
 
 document.body.addEventListener("keydown", function(e) {
