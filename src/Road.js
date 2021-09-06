@@ -1,16 +1,15 @@
 class Road {
 
-  constructor(x, y, direction) {
+  constructor(x, y, dx, dy) {
     this._x = parseInt(x);
     this._y = parseInt(y);
-    this._direction = direction;
-    this._isUp = (direction == "up")
-    this._dx = (this._isUp ? 50 : 25)
-    this._dy = (this._isUp ? 25 : 50)
-    this.image = (this._isUp ? 'images/Roads/HorizontalRoad.gif' : 'images/Roads/HorizontalRoad.gif')
+    this._dx = parseInt(dx);
+    this._dy = parseInt(dy);
     this.constructor.all.push(this);
   }
 
   static all = [];
+
+  static color = "rgba(128,128,128, 100)";
 
 }

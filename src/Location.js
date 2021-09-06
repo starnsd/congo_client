@@ -6,14 +6,14 @@ class Location {
 
   static gameOver = false;
 
-  static countDown = setInterval(function() {
+  /*static countDown = setInterval(function() {
       console.log(this.timer);
       this.timer -= 1;
       if (this.timer <= 0) {
         console.log("game Over!")
         return clearInterval(this.countDown)
       }
-  }.bind(this), 1000)
+  }.bind(this), 1000) */
 
   static paint() {
     if (!!this.stateChange) {
@@ -27,7 +27,7 @@ class Location {
       Dom.ctx.fillRect(1300, 125, 50, 500); //road
       Dom.ctx.fillRect(550, 575, 800, 50);  //road
       Dom.ctx.fillRect(825, 125, 50, 500); //road
-      Dom.ctx.fillRect(875, 350, 425, 50)
+      Dom.ctx.fillRect(875, 350, 425, 50); //road
       Van.all[0].render();
       if (!Van.all[0].isDriving) {
         Driver.all[0].render();
