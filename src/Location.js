@@ -1,5 +1,12 @@
 class Location {
 
+  constructor(time, backgroundColor, roads, houses) {
+    this.timer = time;
+    this.backgroundColor = backgroundColor;
+    this.roads = roads;
+    this.houses = houses;
+  }
+
   static stateChange = true
 
   static timer = 120;
