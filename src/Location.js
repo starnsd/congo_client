@@ -1,16 +1,27 @@
 class Location {
 
-  constructor(time, backgroundColor, roads, houses) {
+  constructor(time, backgroundColor, roads, houses, scores) {
     this.timer = time;
     this.backgroundColor = backgroundColor;
-    this.roads = roads;
-    this.houses = houses;
+    this.roads = roads
+    this.houses = houses
+    this.roads.forEach(road => new Road(road))
+    this.houses.forEach(house => new House(house))
+    this.roads = undefined
+    this.houses = undefined
+    this.scores = scores
     this.stateChange = true
     this.gameOver = false;
     this.constructor.all.push(this)
   }
 
   static all = [];
+
+  static populateLocation(level) {
+    let location = level[0]
+    console.log(location)
+    return (new Location(location) )
+  }
 
   /*static countDown = setInterval(function() {
       console.log(this.timer);
@@ -73,6 +84,7 @@ class Location {
 
   createHouses() {
     this.houses.forEach(house => new House(house));
+    this.houses = undefined
   //  new House(475, 14, "south", 1);
   //  new House(550, 14, "south", 0);
   //  new House(625, 14, "south", 0);

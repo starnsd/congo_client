@@ -1,17 +1,15 @@
 class ApiService {
 
-  static root = "http://localhost:3000/"
-  static level = []
-  static locationUrl = "locations/1"
-
-  static locationFetch = () => {
-    fetch(`${this.root}${this.locationUrl}`)
-      .then(response => response.json() )
-      .then(result => this.level.push(result))
-    return locationArray;
+  constructor(root, locationShow) {
+    this.root = root
+    this.locationShow = locationShow
   }
 
-
-
+  async locationFetch() {
+    let response = await fetch(`${this.root}${this.locationShow}`)
+                          .then(response => response.json() )
+                          //.catch(window.alert("The server is down.  Please try again later."))
+    return response
+  }
 
 }
