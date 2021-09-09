@@ -1,9 +1,10 @@
 const game = {
   paused: false,
-  frame: 0
+  frame: 0,
+  user: "guest"
 }
 const api = new ApiService("http://localhost:3000", "/locations/1")
-const level = api.locationFetch()
+const level = populateLocation();
 
 Dom.populateNav()
 document.getElementById("formpop").addEventListener("submit", (e) => {
@@ -13,11 +14,16 @@ document.getElementById("formpop").addEventListener("submit", (e) => {
   if (!!document.getElementById("email")) {
     let email = document.getElementById("email").value
     let passwordConfirmation = document.getElementById("password_confirmation").value
-    api.createUserFetch(username, email, password, passwordConfirmation)
+    game.user = api.createUserFetch(username, email, password, passwordConfirmation)
   } else {
-    api.
+    game.user = api.signInUserFetch(username, password)
   }
 })
+
+async function populateLocation() {
+  const result = await api.locationFetch();
+  return result
+}
 
 
 

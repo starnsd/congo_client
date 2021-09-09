@@ -17,11 +17,6 @@ class Location {
 
   static all = [];
 
-  static populateLocation(level) {
-    let location = level[0]
-    console.log(location)
-    return (new Location(location) )
-  }
 
   /*static countDown = setInterval(function() {
       console.log(this.timer);

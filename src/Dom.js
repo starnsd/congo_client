@@ -37,16 +37,17 @@ class Dom {
     <input type="password" name="password" id="password"><br>
     <input type="submit" value="Submit">
     `
-    form.innerHtml += formFields
+    form.innerHTML += formFields
     this.form.appendChild(form);
   }
 
   static populateNav() {
     this.removeAllChildNodes(this.form)
-    let nav = `<nav><a href="www.google.com" id="login">Log In!</a> OR <a href="www.google.com" id="signup">Sign Up!</a></nav>`
+    let nav = document.createElement("nav")
+    nav.innerHTML += `<a href="www.google.com" id="login">Log In!</a> OR <a href="www.google.com" id="signup">Sign Up!</a>`
     this.form.appendChild(nav);
-    document.getElementById("login").addEventListener("click", () => {Dom.populateSignInForm()})
-    document.getElementById("signup").addEventListener("click", () => {Dom.populateNewForm()})
+    document.getElementById("login").addEventListener("click", (e) => {e.preventDefault(); Dom.populateSignInForm()})
+    document.getElementById("signup").addEventListener("click", (e) => {e.preventDefault(); Dom.populateNewForm()})
   }
 
   static removeAllChildNodes(parent) {
