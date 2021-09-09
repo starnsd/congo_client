@@ -3,31 +3,31 @@ class ApiService {
   constructor(root, locationShow) {
     this.root = root
     this.locationShow = locationShow
+    this.fetchResults = [];
   }
 
-  locationFetch() {
-    let response = fetch(`${this.root}${this.locationShow}`)
-                    .then(response => response.json() )
-                    .catch(window.alert("The server is down.  Please try again later."))
-    return response
+  locationFetch = () => {
+    return fetch(`${this.root}${this.locationShow}`)
+       .then(response => response.json() )
+       .then(result => result)
   }
 
-  createUserFetch(userName, emailValue, passwordValue, passwordConfirmation) {
-    fetch(`${this.root}/users`, {
+  createUserFetch = (userName, emailValue, passwordValue, passwordConfirmation) => {
+    return fetch(`${this.root}/users`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({user: {username: userName, email: emailValue, password: passwordValue, password_confirmation: passwordConfirmation}})
-    }).then(result => console.log(result.json()))
-      .catch(error => window.alert(error.json()))
+    }).then( response => response.json() )
+      .then( result => result )
   }
 
-  signInUserFetch(userName, passwordValue) {
-    fetch(`${this.root}/users`, {
+  signInUserFetch = (userName, passwordValue) => {
+    return fetch(`${this.root}/users`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({user: {username: userName, password: passwordValue}})
-    }).then(result => result.json())
-      .catch(error => window.alert(error.json()))
+    }).then(response => response.json())
+      .then(result => result)
   }
       
 }

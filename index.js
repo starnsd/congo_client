@@ -4,25 +4,15 @@ const game = {
   user: "guest"
 }
 const api = new ApiService("http://localhost:3000", "/locations/1")
-const level = populateLocation();
+orderedFunction(api.locationFetch, "fetching location")
+Dom.populateNav();
 
-Dom.populateNav()
-document.getElementById("formpop").addEventListener("submit", (e) => {
-  e.preventDefault()
-  let username = document.getElementById("username").value
-  let password = document.getElementById("password").value
-  if (!!document.getElementById("email")) {
-    let email = document.getElementById("email").value
-    let passwordConfirmation = document.getElementById("password_confirmation").value
-    game.user = api.createUserFetch(username, email, password, passwordConfirmation)
-  } else {
-    game.user = api.signInUserFetch(username, password)
-  }
-})
-
-async function populateLocation() {
-  const result = await api.locationFetch();
-  return result
+async function orderedFunction(func, message = "no message") {
+  console.log(message)
+  const result = await func();
+  console.log(result);
+  api.fetchResults.push(result);
+  return result;
 }
 
 

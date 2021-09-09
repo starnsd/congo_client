@@ -23,9 +23,10 @@ class Dom {
     `
     form.innerHTML += formFields
     this.form.appendChild(form)
+    this.formEventListen();
   }
 
-  static populateSignInForm() {
+  static populateSignInForm = () => {
     this.removeAllChildNodes(this.form)
     let form = document.createElement("form");
     form.method = "post";
@@ -39,9 +40,10 @@ class Dom {
     `
     form.innerHTML += formFields
     this.form.appendChild(form);
+    this.formEventListen();
   }
 
-  static populateNav() {
+  static populateNav = () => {
     this.removeAllChildNodes(this.form)
     let nav = document.createElement("nav")
     nav.innerHTML += `<a href="www.google.com" id="login">Log In!</a> OR <a href="www.google.com" id="signup">Sign Up!</a>`
@@ -50,7 +52,23 @@ class Dom {
     document.getElementById("signup").addEventListener("click", (e) => {e.preventDefault(); Dom.populateNewForm()})
   }
 
-  static removeAllChildNodes(parent) {
+  static formEventListen = () => {
+    let theForm = document.getElementById("formpop")
+    theForm.addEventListener("submit", (e) => {
+      e.preventDefault()
+      let username = document.getElementById("username").value
+      let password = document.getElementById("password").value
+      if (!!document.getElementById("email")) {
+        let email = document.getElementById("email").value
+        let passwordConfirmation = document.getElementById("password_confirmation").value
+        game.user = api.createUserFetch(username, email, password, passwordConfirmation)
+      } else {
+        game.user = api.signInUserFetch(username, password)
+      }
+    })
+  }
+
+  static removeAllChildNodes = (parent) => {
     while (parent.firstChild) {
       parent.removeChild(parent.firstChild);
     }
