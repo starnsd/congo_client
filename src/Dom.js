@@ -41,6 +41,14 @@ class Dom {
     this.form.appendChild(form);
   }
 
+  static populateNav() {
+    this.removeAllChildNodes(this.form)
+    let nav = `<nav><a href="www.google.com" id="login">Log In!</a> OR <a href="www.google.com" id="signup">Sign Up!</a></nav>`
+    this.form.appendChild(nav);
+    document.getElementById("login").addEventListener("click", () => {Dom.populateSignInForm()})
+    document.getElementById("signup").addEventListener("click", () => {Dom.populateNewForm()})
+  }
+
   static removeAllChildNodes(parent) {
     while (parent.firstChild) {
       parent.removeChild(parent.firstChild);

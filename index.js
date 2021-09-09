@@ -3,16 +3,20 @@ const game = {
   frame: 0
 }
 const api = new ApiService("http://localhost:3000", "/locations/1")
-//const level = api.locationFetch()
+const level = api.locationFetch()
 
-Dom.populateNewForm();
+Dom.populateNav()
 document.getElementById("formpop").addEventListener("submit", (e) => {
   e.preventDefault()
   let username = document.getElementById("username").value
-  let email = document.getElementById("email").value
   let password = document.getElementById("password").value
-  let passwordConfirmation = document.getElementById("password_confirmation").value
-  api.createUserFetch(username, email, password, passwordConfirmation)
+  if (!!document.getElementById("email")) {
+    let email = document.getElementById("email").value
+    let passwordConfirmation = document.getElementById("password_confirmation").value
+    api.createUserFetch(username, email, password, passwordConfirmation)
+  } else {
+    api.
+  }
 })
 
 
