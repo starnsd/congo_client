@@ -1,10 +1,10 @@
 class Road {
 
-  constructor(x, y, dx, dy) {
-    this._x = parseInt(x);
-    this._y = parseInt(y);
-    this._dx = parseInt(dx);
-    this._dy = parseInt(dy);
+  constructor(road) {
+    this._x = parseInt(road.x);
+    this._y = parseInt(road.y);
+    this._dx = parseInt(road.dx);
+    this._dy = parseInt(road.dy);
     this.constructor.all.push(this);
   }
 

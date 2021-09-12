@@ -61,9 +61,11 @@ class Dom {
       if (!!document.getElementById("email")) {
         let email = document.getElementById("email").value
         let passwordConfirmation = document.getElementById("password_confirmation").value
-        game.user = api.createUserFetch(username, email, password, passwordConfirmation)
+        window.orderedFunction(api.createUserFetch(username, email, password, passwordConfirmation), "user", "creating user")
+        new Location(api.location)
       } else {
-        game.user = api.signInUserFetch(username, password)
+        window.orderedFunction(api.signInUserFetch(username, password), "user", "signing in user")
+        new Location(api.location)
       }
     })
   }

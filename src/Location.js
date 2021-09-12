@@ -1,15 +1,13 @@
 class Location {
 
-  constructor(time, backgroundColor, roads, houses, scores) {
-    this.timer = time;
-    this.backgroundColor = backgroundColor;
-    this.roads = roads
-    this.houses = houses
-    this.roads.forEach(road => new Road(road))
-    this.houses.forEach(house => new House(house))
-    this.roads = undefined
-    this.houses = undefined
-    this.scores = scores
+  constructor(jsonObj) {
+    this.timer = jsonObj.time;
+    this.backgroundColor = jsonObj.background;
+    this.roads = jsonObj.roads
+    this.createRoads(this.roads)
+    this.houses = jsonObj.houses
+    this.createHouses(jsonObj.houses)
+    this.scores = jsonObj.scores
     this.stateChange = true
     this.gameOver = false;
     this.constructor.all.push(this)
@@ -77,9 +75,9 @@ class Location {
       this.stateChange = false
     }
 
-  createHouses() {
-    this.houses.forEach(house => new House(house));
-    this.houses = undefined
+  createHouses(houses) {
+    houses.forEach(house => new House(house));
+    this.houses = undefined;
   //  new House(475, 14, "south", 1);
   //  new House(550, 14, "south", 0);
   //  new House(625, 14, "south", 0);
@@ -109,5 +107,10 @@ class Location {
   //  new House(1075, 630, "north", 1);
   //  new House(1150, 630, "north", 1);
   //  new House(1225, 630, "north", 0);
+  }
+
+  createRoads(roads) {
+    roads.forEach(road => new Road(road))
+    this.roads = undefined
   }
 }

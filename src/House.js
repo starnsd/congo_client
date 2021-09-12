@@ -1,14 +1,14 @@
 class House {
 
-  constructor(x, y, direction, delivery, dog = 0) {
-    this._x = parseInt(x);
-    this._y = parseInt(y);
-    this._hasDelivery = (parseInt(delivery) == 1)
-    this.image = this.houseImage(direction)
+  constructor(house) {
+    this._x = parseInt(house.x);
+    this._y = parseInt(house.y);
+    this._hasDelivery = (parseInt(house.delivery) == 1)
+    this.image = this.houseImage(house.direction)
     this._dx = 50;
     this._dy = 50;
-    this._hasDog = (parseInt(dog) == 1)
-    this._direction = direction
+    this._hasDog = (parseInt(house.dog) == 1)
+    this._direction = house.direction
     this.name = `house${this.constructor.all.length}`
     this.constructor.all.push(this)
   }

@@ -4,14 +4,15 @@ const game = {
   user: "guest"
 }
 const api = new ApiService("http://localhost:3000", "/locations/1")
-orderedFunction(api.locationFetch, "fetching location")
+const level = orderedFunction(api.locationFetch, "location", "fetching location")
 Dom.populateNav();
 
-async function orderedFunction(func, message = "no message") {
+
+async function orderedFunction(func, key, message = "no message") {
   console.log(message)
   const result = await func();
   console.log(result);
-  api.fetchResults.push(result);
+  api[`${key}`] = result
   return result;
 }
 
