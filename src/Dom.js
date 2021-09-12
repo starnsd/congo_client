@@ -2,9 +2,9 @@ class Dom {
   
   static game = document.getElementById("game")
   static form = document.getElementById("form");
-  //static canvas = document.getElementById("canvas");
-  //static ctx = canvas.getContext("2d");
-  //static stats = document.getElementById("stats");
+  static canvas = document.getElementById("canvas");
+  static ctx = canvas.getContext("2d");
+  static stats = document.getElementById("stats");
   static populateNewForm() {
     this.removeAllChildNodes(this.form)
     let form = document.createElement("form")
@@ -61,11 +61,17 @@ class Dom {
       if (!!document.getElementById("email")) {
         let email = document.getElementById("email").value
         let passwordConfirmation = document.getElementById("password_confirmation").value
-        orderedFunction(api.createUserFetch(username, email, password, passwordConfirmation), "user", "creating user")
-        new Location(api.location)
+        orderedFunction(api.createUserFetch, "user", "creating user", username, email, password, passwordConfirmation)
+        if (Location.all.length < 1) {
+          new Location(api.location)
+        }
+        this.populateGame()
       } else {
         orderedFunction(api.signInUserFetch, "user", "signing in user", username, password)
-        new Location(api.location)
+        if (Location.all.length < 1) {
+          new Location(api.location)
+        }
+        this.populateGame()
       }
     })
   }
@@ -74,6 +80,44 @@ class Dom {
     while (parent.firstChild) {
       parent.removeChild(parent.firstChild);
     }
+  }
+
+  static movement() {
+      document.body.addEventListener("keydown", function(e) {
+        let player = (van.isDriving ? van : Driver.all[0] )
+        if (!game.paused) {
+          player.move(e.keyCode);
+        }
+        if (!van.isDriving && player instanceof Driver) {
+          van.buckleUp(player);
+          House.all.forEach(house => house.makeDelivery(player))
+        }
+        Location.all[0].stateChange = true
+        Location.all[0].paint()
+      })
+  }
+
+  static populateGame() {
+    this.removeAllChildNodes(this.form);
+    let startButton = document.createElement("button")
+    game.paused = true
+    startButton.innerText = "start";
+    startButton.id = "startButton";
+    this.form.appendChild(startButton);
+    document.getElementById("startButton").addEventListener("click", (e) => {
+      this.removeAllChildNodes(this.stats)
+      if (api.user.id) {
+        game.paused = !game.paused;
+        e.target.innerText = (!!game.paused ? "start" : "pause")
+        let user = document.createElement("p")
+        user.innerHTML = `Logged in as: <strong>${api.user.username}</strong>`
+        Dom.stats.appendChild(user);
+      } else {
+        alert("Invalid Username/Password")
+        this.populateNav();
+      }
+
+    })
   }
   
 }

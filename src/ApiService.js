@@ -9,6 +9,7 @@ class ApiService {
     return fetch(`${this.root}${this.locationShow}`)
        .then(response => response.json() )
        .then(result => result)
+       .catch(error => alert(error))
   }
 
   createUserFetch = (userName, emailValue, passwordValue, passwordConfirmation) => {
@@ -17,7 +18,7 @@ class ApiService {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({user: {username: userName, email: emailValue, password: passwordValue, password_confirmation: passwordConfirmation}})
     }).then( response => response.json() )
-      .then( result => result )
+      .then(result => result)
   }
 
   signInUserFetch = (userName, passwordValue) => {

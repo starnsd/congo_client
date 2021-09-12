@@ -10,6 +10,8 @@ class Location {
     this.scores = jsonObj.scores
     this.stateChange = true
     this.gameOver = false;
+    this.paint();
+    Dom.movement();
     this.constructor.all.push(this)
   }
 

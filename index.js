@@ -1,10 +1,11 @@
 const game = {
-  paused: false,
+  paused: true,
   frame: 0,
   user: "guest"
 }
+const van = new Van(14, 326)
 const api = new ApiService("http://localhost:3000", "/locations/1")
-const level = orderedFunction(api.locationFetch, "location", "fetching location")
+orderedFunction(api.locationFetch, "location", "fetching location")
 Dom.populateNav();
 
 
