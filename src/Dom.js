@@ -61,10 +61,10 @@ class Dom {
       if (!!document.getElementById("email")) {
         let email = document.getElementById("email").value
         let passwordConfirmation = document.getElementById("password_confirmation").value
-        window.orderedFunction(api.createUserFetch(username, email, password, passwordConfirmation), "user", "creating user")
+        orderedFunction(api.createUserFetch(username, email, password, passwordConfirmation), "user", "creating user")
         new Location(api.location)
       } else {
-        window.orderedFunction(api.signInUserFetch(username, password), "user", "signing in user")
+        orderedFunction(api.signInUserFetch, "user", "signing in user", username, password)
         new Location(api.location)
       }
     })

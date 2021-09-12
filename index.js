@@ -8,12 +8,21 @@ const level = orderedFunction(api.locationFetch, "location", "fetching location"
 Dom.populateNav();
 
 
-async function orderedFunction(func, key, message = "no message") {
+async function orderedFunction(func, key, message, ...args) {
   console.log(message)
-  const result = await func();
-  console.log(result);
-  api[`${key}`] = result
-  return result;
+  console.log(...args)
+  if (args.length > 0) {
+    const result = await func(...args)
+    console.log(result);
+    api[`${key}`] = result;
+    return result;
+  } else {
+    const result = await func();
+    console.log(result);
+    api[`${key}`] = result;
+    return result;
+  }
+
 }
 
 

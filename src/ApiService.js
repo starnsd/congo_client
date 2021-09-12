@@ -3,7 +3,6 @@ class ApiService {
   constructor(root, locationShow) {
     this.root = root
     this.locationShow = locationShow
-    this.fetchResults = [];
   }
 
   locationFetch = () => {
