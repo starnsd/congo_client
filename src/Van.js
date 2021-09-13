@@ -39,21 +39,26 @@ class Van {
   }
 
   move(keyCode) {
+    let vanPos = {}
+    vanPos.x = this.x;
+    vanPos.y = this.y;
+    vanPos.dx = this.dx;
+    vanPos.dy = this.dy;
     switch (keyCode) {
       case 39:
-        this._x += 6;
+        vanPos.x += 6;
         this.image = this.east;
         break;
       case 38:
-        this._y -= 6;
+        vanPos.y -= 6;
         this.image = this.north;
         break;
       case 37:
-        this._x -= 6;
+        vanPos.x -= 6;
         this.image = this.west;
         break;
       case 40:
-        this._y += 6;
+        vanPos.y += 6;
         this.image = this.south;
         break;
       case 32:
@@ -61,7 +66,11 @@ class Van {
         break;
       default:
         break;
-      }
+    }
+    if (Road.all.some(road => road.isOnRoad(vanPos))) {
+      this._x = vanPos.x;
+      this._y = vanPos.y;
+    }
   }
 
   render() {

@@ -12,4 +12,14 @@ class Road {
 
   static color = "rgba(128,128,128, 100)";
 
+  isOnRoad = (van) => {
+    let r = this
+    let v = van
+    if ( !(r._x > v.x + v.dx || r._x + r._dx < v.x || r._y > v.y + v.dy || r._y + r._dy < v.y) ) {
+      return true
+    } else {
+      return false
+    }
+  }
+
 }
