@@ -17,6 +17,10 @@ class Location {
 
   static all = [];
 
+  deliveries() {
+    return House.all.map(house => house._hasDelivery).filter(Boolean).length
+  }
+
 
   /*static countDown = setInterval(function() {
       console.log(this.timer);

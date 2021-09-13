@@ -104,20 +104,35 @@ class Dom {
     startButton.innerText = "start";
     startButton.id = "startButton";
     this.form.appendChild(startButton);
-    document.getElementById("startButton").addEventListener("click", (e) => {
+    document.getElementById("startButton").addEventListener("mouseup", (e) => {
       this.removeAllChildNodes(this.stats)
       if (api.user.id) {
         game.paused = !game.paused;
         e.target.innerText = (!!game.paused ? "start" : "pause")
         let user = document.createElement("p")
-        user.innerHTML = `Logged in as: <strong>${api.user.username}</strong>`
+        let userName = `Logged in as: <strong id="user">${api.user.username}</strong> | `
+        let timeRemain = `Time Remaining: <strong id="counter">${Location.all[0].timer}</strong> | `
+        let currentScore = `Current Score: <strong id="score">${game.score}</strong> | `
+        let deliveries = `Deliveries Remaining: <strong id="deliveries">${Location.all[0].deliveries()}<strong>`
+        user.innerHTML = userName + timeRemain + currentScore + deliveries;
         Dom.stats.appendChild(user);
       } else {
         alert("Invalid Username/Password")
+        Dom.ctx.clearRect(0,0, canvas.width, canvas.height);
         this.populateNav();
       }
-
     })
+  }
+
+  static refresh() {
+    if (Location.all.length > 0) {
+      if (!(game.paused && !Location.all[0].gameOver)) {
+        Location.all[0].timer --;
+        document.getElementById("counter").innerText = `${Location.all[0].timer}`;
+        document.getElementById("score").innerText = `${game.score}`;
+        document.getElementById("deliveries").innerText = `${Location.all[0].deliveries()}`
+      }
+    }
   }
   
 }
