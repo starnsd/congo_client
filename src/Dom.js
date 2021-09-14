@@ -2,9 +2,8 @@ class Dom {
   
   static game = document.getElementById("game")
   static form = document.getElementById("form");
-  //static canvas = document.getElementById("canvas");
-  //static ctx = canvas.getContext("2d");
   static stats = document.getElementById("stats");
+  static scores = document.getElementById("scores");
   static populateNewForm() {
     this.removeAllChildNodes(this.form)
     let form = document.createElement("form")
@@ -119,6 +118,19 @@ class Dom {
         let deliveries = `Deliveries Remaining: <strong id="deliveries">${Location.all[0].deliveries()}<strong>`
         user.innerHTML = userName + timeRemain + currentScore + deliveries;
         Dom.stats.appendChild(user);
+        this.removeAllChildNodes(this.scores);
+        let scoreLabel = document.createElement("p")
+        scoreLabel.innerText = `----------HIGH SCORES----------`
+        let scores = document.createElement("ul");
+        let count = 0
+        for (const score of api.location.scores) {
+          count++
+          let li = document.createElement("li")
+          li.innerText = `${count}. ${score.username}: ${score.points}`
+          scores.appendChild(li);
+        }
+        Dom.scores.appendChild(scoreLabel)
+        Dom.scores.appendChild(scores);
       } else {
         alert("Invalid Username/Password")
         Dom.ctx.clearRect(0,0, canvas.width, canvas.height);
