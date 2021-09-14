@@ -126,11 +126,13 @@ class Dom {
 
   static refresh() {
     if (Location.all.length > 0) {
-      if (!(game.paused && !Location.all[0].gameOver)) {
-        Location.all[0].timer --;
+      let location = Location.all[0];
+      if (!(game.paused || location.gameOver)) {
+        location.timer --;
         document.getElementById("counter").innerText = `${Location.all[0].timer}`;
         document.getElementById("score").innerText = `${game.score}`;
         document.getElementById("deliveries").innerText = `${Location.all[0].deliveries()}`
+        location.isGameOver();
       }
     }
   }

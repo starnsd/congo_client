@@ -21,6 +21,13 @@ class Location {
     return House.all.map(house => house._hasDelivery).filter(Boolean).length
   }
 
+  isGameOver() {
+    if (this.timer <= 0 || this.deliveries() == 0) {
+      this.gameOver = true;
+      game.user = api.user.username;
+    }
+  }
+
 
   /*static countDown = setInterval(function() {
       console.log(this.timer);
