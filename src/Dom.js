@@ -137,6 +137,11 @@ class Dom {
         document.getElementById("deliveries").innerText = `${Location.all[0].deliveries()}`
         location.isGameOver();
       }
+      if (location.gameOver && game.breakOut == 0) {
+        game.breakOut++
+        game.score += location.timer * 2;
+        orderedFunction(api.endGameFetch, "endGame", "saving score", api.user.id, game.score, api.location.id, api.user.username)
+      }
     }
   }
 

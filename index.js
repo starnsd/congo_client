@@ -1,6 +1,7 @@
 const game = {
   paused: true,
   frame: 0,
+  breakOut: 0,
   user: "guest",
   score: 0
 }
