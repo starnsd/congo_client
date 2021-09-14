@@ -54,6 +54,7 @@ class House {
   successfulDelivery(driver) {
     driver.placePackage();
     this._hasDelivery = false;
+    game.score += 10;
     this.image = this.houseImage(this._direction)
   }
 
