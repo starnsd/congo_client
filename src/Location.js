@@ -10,8 +10,6 @@ class Location {
     this.scores = jsonObj.scores
     this.stateChange = true
     this.gameOver = false;
-    this.paint();
-    Dom.movement();
     this.constructor.all.push(this)
   }
 
@@ -27,16 +25,6 @@ class Location {
       game.user = api.user.username;
     }
   }
-
-
-  /*static countDown = setInterval(function() {
-      console.log(this.timer);
-      this.timer -= 1;
-      if (this.timer <= 0) {
-        console.log("game Over!")
-        return clearInterval(this.countDown)
-      }
-  }.bind(this), 1000) */
 
     paint() {
       if (!!this.stateChange) {
@@ -91,35 +79,6 @@ class Location {
   createHouses(houses) {
     houses.forEach(house => new House(house));
     this.houses = undefined;
-  //  new House(475, 14, "south", 1);
-  //  new House(550, 14, "south", 0);
-  //  new House(625, 14, "south", 0);
-  //  new House(700, 14, "south", 1);
-  //  new House(775, 14, "south", 0);
-  //  new House(850, 14, "south", 0);
-  //  new House(925, 14, "south", 0);
-  //  new House(1000, 14, "south", 1);
-  //  new House(1075, 14, "south", 0);
-  //  new House(1150, 14, "south", 0);
-  //  new House(1225, 14, "south", 1);
-  //  new House(1360, 100, "west", 1);
-  //  new House(1360, 175, "west", 0);
-  //  new House(1360, 250, "west", 1);
-  //  new House(1360, 325, "west", 0);
-  //  new House(1360, 400, "west", 0);
-  //  new House(1360, 475, "west", 0);
-  //  new House(1360, 550, "west", 1);
-  //  new House(475, 630, "north", 0);
-  //  new House(550, 630, "north", 1);
-  //  new House(625, 630, "north", 0);
-  //  new House(700, 630, "north", 0);
-  //  new House(775, 630, "north", 1);
-  //  new House(850, 630, "north", 0);
-  //  new House(925, 630, "north", 0);
-  //  new House(1000, 630, "north", 1);
-  //  new House(1075, 630, "north", 1);
-  //  new House(1150, 630, "north", 1);
-  //  new House(1225, 630, "north", 0);
   }
 
   createRoads(roads) {

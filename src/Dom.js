@@ -2,8 +2,8 @@ class Dom {
   
   static game = document.getElementById("game")
   static form = document.getElementById("form");
-  static canvas = document.getElementById("canvas");
-  static ctx = canvas.getContext("2d");
+  //static canvas = document.getElementById("canvas");
+  //static ctx = canvas.getContext("2d");
   static stats = document.getElementById("stats");
   static populateNewForm() {
     this.removeAllChildNodes(this.form)
@@ -104,6 +104,9 @@ class Dom {
     startButton.innerText = "start";
     startButton.id = "startButton";
     this.form.appendChild(startButton);
+    this.createGame();
+    Location.all[0].paint();
+    this.movement();
     document.getElementById("startButton").addEventListener("mouseup", (e) => {
       this.removeAllChildNodes(this.stats)
       if (api.user.id) {
@@ -135,6 +138,17 @@ class Dom {
         location.isGameOver();
       }
     }
+  }
+
+  static createGame() {
+    this.removeAllChildNodes(this.game)
+    let canvas = document.createElement("canvas");
+    canvas.id = "canvas";
+    canvas.width = "1500";
+    canvas.height = "750";
+    this.game.appendChild(canvas);
+    this.canvas = document.getElementById("canvas");
+    this.ctx = canvas.getContext("2d");
   }
   
 }
