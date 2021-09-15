@@ -38,3 +38,12 @@ div#scores {
   color: rgb(238, 255, 0);
 }
 
+div#useroptions {
+  position: absolute;
+  text-align: center;
+  top: 30%;
+  margin-right: 88.58%;
+  background-color: rgb(56, 52, 255);
+  color: rgb(238, 255, 0);
+}
+
