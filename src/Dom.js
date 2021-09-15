@@ -6,6 +6,7 @@ class Dom {
   static scores = document.getElementById("scores");
   static populateNewForm() {
     this.removeAllChildNodes(this.form)
+    this.removeAllChildNodes(this.game)
     let form = document.createElement("form")
     form.method = "post";
     form.id = "formpop";
@@ -27,6 +28,7 @@ class Dom {
 
   static populateSignInForm = () => {
     this.removeAllChildNodes(this.form)
+    this.removeAllChildNodes(this.game)
     let form = document.createElement("form");
     form.method = "post";
     form.id = "formpop";
@@ -44,6 +46,13 @@ class Dom {
 
   static populateNav = () => {
     this.removeAllChildNodes(this.form)
+    let controls = document.createElement("p")
+    controls.innerText = `Welcome to Congo Delivery Service!  Your goal will be to deliver all the packages before the time runs out!
+      Once you are ready to start click the start button at the top to unpause the game (after logging in).  You can then use the arrow
+       keys to move your van or driver around (van moves faster but you can only deliver packages with the driver).  Press spacebar to
+        have the driver exit the van with a new package.  Deliver the package to a highlighted house and return to the van.  Good luck!`
+    controls.id = "controls"
+    Dom.game.appendChild(controls);
     let nav = document.createElement("nav")
     nav.innerHTML += `<a href="www.google.com" id="login">Log In!</a> OR <a href="www.google.com" id="signup">Sign Up!</a>`
     this.form.appendChild(nav);

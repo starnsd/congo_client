@@ -10,6 +10,19 @@ div#form {
   height: 60px;
 }
 
+p#controls {
+  text-align: center;
+  position: relative;
+  font-size: 20px;
+  background-color:rgb(56, 52, 255);
+  color:rgb(238, 255, 0);
+  width: 100vw;
+  left: calc(-50vw + 50%);
+  right: calc(-50vw + 50%);
+  margin-left: -6.6vw;
+  margin-right: -1vw;
+}
+
 
 #game {
   position: absolute;
