@@ -104,7 +104,7 @@ class Dom {
     startButton.id = "startButton";
     this.form.appendChild(startButton);
     this.createGame();
-    Location.all[0].paint();
+    Location.all[0].forcePaint();
     this.movement();
     document.getElementById("startButton").addEventListener("mouseup", (e) => {
       this.removeAllChildNodes(this.stats)
@@ -131,6 +131,12 @@ class Dom {
         }
         Dom.scores.appendChild(scoreLabel)
         Dom.scores.appendChild(scores);
+        this.removeAllChildNodes(document.getElementById("useroptions"))
+        let editButton = document.createElement("button")
+        editButton.id = "editButton"
+        editButton.innerText = "Edit User"
+        document.getElementById("useroptions").appendChild(editButton)
+        document.getElementById("editButton").addEventListener("mouseup", () => {Dom.populateEditForm()})
       } else {
         alert("Invalid Username/Password")
         Dom.ctx.clearRect(0,0, canvas.width, canvas.height);
@@ -166,6 +172,39 @@ class Dom {
     this.game.appendChild(canvas);
     this.canvas = document.getElementById("canvas");
     this.ctx = canvas.getContext("2d");
+  }
+
+  static populateEditForm() {
+    this.removeAllChildNodes(this.form)
+    game.paused = true
+    Dom.ctx.clearRect(0,0, canvas.width, canvas.height);
+    this.removeAllChildNodes(Dom.game)
+    let form = document.createElement("form")
+    form.method = "patch";
+    form.id = "formeditpop";
+    let formFields = `
+    <label for="username">Enter New Username:</label><br>
+    <input type="text" name="username" id="username" value="${api.user.username}"><br>
+    <label for="email">Please Enter New Email:</label><br>
+    <input type="text" name="email" id="email" value="${api.user.email}"><br>
+    <label for="password">Please Enter New Password:</label><br>
+    <input type="password" name="password" id="password"><br>
+    <label for="password_confirmation">Confirm New Password:</label><br>
+    <input type="password" name="password_confirmation" id="password_confirmation"><br>
+    <input type="submit" value="Submit">
+    `
+    form.innerHTML += formFields
+    this.form.appendChild(form)
+    let formeditpop = document.getElementById("formeditpop")
+    formeditpop.addEventListener("submit", (e) => {
+      e.preventDefault();
+      let username = document.getElementById("username").value
+      let password = document.getElementById("password").value
+      let email = document.getElementById("email").value
+      let passwordConfirmation = document.getElementById("password_confirmation").value
+      orderedFunction(api.editUserFetch, "user", "editing user info", username, email, password, passwordConfirmation)
+      this.populateGame();
+    })
   }
   
 }

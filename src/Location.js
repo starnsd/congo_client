@@ -26,8 +26,15 @@ class Location {
     }
   }
 
+  forcePaint() {
+    game.paused = false
+    this.stateChange = true
+    this.paint();
+    game.paused = true
+  }
+
     paint() {
-      if (!!this.stateChange) {
+      if (!!this.stateChange && !game.paused) {
         Dom.ctx.clearRect(0,0, canvas.width, canvas.height);
         Dom.ctx.fillStyle = "rgba(11,156,49,0.6)";
         Dom.ctx.fillRect(0, 0, 1500, 750);

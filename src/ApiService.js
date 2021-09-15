@@ -38,5 +38,19 @@ class ApiService {
     }).then(response => response.json())
       .then(result => result)
   }
+
+  editUserFetch = (userName, emailValue, passwordValue, passwordConfirmation) => {
+    return fetch(`${this.root}/users/${api.user.id}`, {
+      method: 'PATCH',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        '_method': 'PATCH',
+        'Authorization': ''
+      },
+      body: JSON.stringify({user: {username: userName, email: emailValue, password: passwordValue, password_confirmation: passwordConfirmation}})
+    }).then( response => response.json() )
+      .then(result => result)
+  }
       
 }
