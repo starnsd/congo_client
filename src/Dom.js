@@ -112,11 +112,10 @@ class Dom {
         game.paused = !game.paused;
         e.target.innerText = (!!game.paused ? "start" : "pause")
         let user = document.createElement("p")
-        let userName = `Logged in as: <strong id="user">${api.user.username}</strong> | `
         let timeRemain = `Time Remaining: <strong id="counter">${Location.all[0].timer}</strong> | `
         let currentScore = `Current Score: <strong id="score">${game.score}</strong> | `
         let deliveries = `Deliveries Remaining: <strong id="deliveries">${Location.all[0].deliveries()}<strong>`
-        user.innerHTML = userName + timeRemain + currentScore + deliveries;
+        user.innerHTML = timeRemain + currentScore + deliveries;
         Dom.stats.appendChild(user);
         this.removeAllChildNodes(this.scores);
         let scoreLabel = document.createElement("p")
@@ -132,10 +131,13 @@ class Dom {
         Dom.scores.appendChild(scoreLabel)
         Dom.scores.appendChild(scores);
         this.removeAllChildNodes(document.getElementById("useroptions"))
+        let userName = `<p>Logged in as: <strong id="user">${api.user.username}</strong></p>`
         let editButton = document.createElement("button")
         editButton.id = "editButton"
         editButton.innerText = "Edit User"
-        document.getElementById("useroptions").appendChild(editButton)
+        let userOptions = document.getElementById("useroptions")
+        userOptions.innerHTML += userName
+        userOptions.appendChild(editButton)
         document.getElementById("editButton").addEventListener("mouseup", () => {Dom.populateEditForm()})
       } else {
         alert("Invalid Username/Password")
