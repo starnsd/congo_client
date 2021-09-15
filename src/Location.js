@@ -15,6 +15,11 @@ class Location {
 
   static all = [];
 
+  highScores() {
+    const highScores = this.scores.sort( (a, b) => {return b.points - a.points})
+    return highScores;
+  }
+
   deliveries() {
     return House.all.map(house => house._hasDelivery).filter(Boolean).length
   }

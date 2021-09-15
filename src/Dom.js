@@ -126,7 +126,7 @@ class Dom {
         scoreLabel.innerText = `----------HIGH SCORES----------`
         let scores = document.createElement("ul");
         let count = 0
-        for (const score of api.location.scores) {
+        for (const score of Location.all[0].highScores()) {
           count++
           let li = document.createElement("li")
           li.innerText = `${count}. ${score.username}: ${score.points}`
