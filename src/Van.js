@@ -24,6 +24,7 @@ class Van {
   set x(x) {this._x = x};
   set y(y) {this._y = y};
   get isDriving() {return this._isDriving}
+  set isDriving(value) {this._isDriving = value}
 
   toggleDriver() {
     this._isDriving = (!this._isDriving)

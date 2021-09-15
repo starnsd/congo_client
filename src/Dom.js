@@ -82,6 +82,7 @@ class Dom {
   }
 
   static movement() {
+    if (game.gamesPlayed == 0) {
       document.body.addEventListener("keydown", function(e) {
         let player = (van.isDriving ? van : Driver.all[0] )
         if (!game.paused) {
@@ -91,9 +92,12 @@ class Dom {
           van.buckleUp(player);
           House.all.forEach(house => house.makeDelivery(player))
         }
-        Location.all[0].stateChange = true
-        Location.all[0].paint()
+        if (Location.all.length > 0) {
+          Location.all[0].stateChange = true
+          Location.all[0].paint()
+        }
       })
+    }
   }
 
   static populateGame() {
@@ -148,7 +152,7 @@ class Dom {
   }
 
   static refresh() {
-    if (Location.all.length > 0) {
+    if (Location.all.length > 0 && game.breakOut == 0) {
       let location = Location.all[0];
       if (!(game.paused || location.gameOver)) {
         location.timer --;
@@ -158,9 +162,11 @@ class Dom {
         location.isGameOver();
       }
       if (location.gameOver && game.breakOut == 0) {
+        clearInterval(game.intervalId)
         game.breakOut++
         game.score += location.timer * 2;
         orderedFunction(api.endGameFetch, "endGame", "saving score", api.user.id, game.score, api.location.id, api.user.username)
+        location.endGameEvent();
       }
     }
   }

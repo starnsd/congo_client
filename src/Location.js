@@ -26,6 +26,35 @@ class Location {
     }
   }
 
+  endGameEvent = () => {
+    const replay = window.confirm(`Thanks for playing!  Your score was ${game.score}.  Play again?`);
+    if (replay) {
+      game.score = 0;
+      Dom.ctx.clearRect(0,0, canvas.width, canvas.height);
+      Dom.removeAllChildNodes(Dom.form)
+      Dom.removeAllChildNodes(Dom.game)
+      Dom.removeAllChildNodes(Dom.stats)
+      Dom.removeAllChildNodes(Dom.scores)
+      const userOptions = document.getElementById("useroptions")
+      Dom.removeAllChildNodes(userOptions)
+      van.x = 14;
+      van.y = 326;
+      Driver.all.pop();
+      van.isDriving = true;
+      for (let i = 0; i < Road.all.length; i++) {
+        delete Road.all[i]
+      }
+      Road.all = []
+      for (let i = 0; i < House.all.length; i++) {
+        delete House.all[i]
+      }
+      House.all = []
+      startTheGame();
+    } else {
+      alert("The game is over, Have a wonderful day!");
+    }
+  }
+
   forcePaint() {
     game.paused = false
     this.stateChange = true
