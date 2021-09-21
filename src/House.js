@@ -56,6 +56,7 @@ class House {
     this._hasDelivery = false;
     game.score += 10;
     this.image = this.houseImage(this._direction)
+    Location.all[0].stateChange = true;
   }
 
   get x() {return this._x};

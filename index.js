@@ -1,6 +1,7 @@
 const game = {
   paused: true,
-  frame: 0,
+  frameX: 0,
+  frameY: 0,
   breakOut: 0,
   user: "guest",
   score: 0,
@@ -12,7 +13,18 @@ const api = new ApiService("http://localhost:3000", "/locations/1")
 orderedFunction(api.locationFetch, "location", "fetching location")
 Dom.populateNav();
 game.intervalId = setInterval(Dom.refresh, 1000)
+animate();
 
+function animate() {
+  if (Location.all.length > 0) {
+    Location.all[0].paint()
+    Van.all[0].render();
+    if (!Van.all[0].isDriving) {
+      Driver.all[0].render();
+    }
+  }
+  requestAnimationFrame(animate)
+}
 
 function startTheGame() {
   if (Location.all.length > 0) {

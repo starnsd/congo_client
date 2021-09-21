@@ -101,10 +101,6 @@ class Dom {
           van.buckleUp(player);
           House.all.forEach(house => house.makeDelivery(player))
         }
-        if (Location.all.length > 0) {
-          Location.all[0].stateChange = true
-          Location.all[0].paint()
-        }
       })
     }
   }
@@ -175,7 +171,7 @@ class Dom {
         game.breakOut++
         game.score += location.timer * 2;
         orderedFunction(api.endGameFetch, "endGame", "saving score", api.user.id, game.score, api.location.id, api.user.username)
-        location.endGameEvent();
+        //location.endGameEvent();
       }
     }
   }

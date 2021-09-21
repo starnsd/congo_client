@@ -47,11 +47,9 @@ class Driver {
       default:
         break;
     }
-  // e.keyCode == 39 is right
-  // e.keyCode == 38 is up
-  // e.keyCode == 37 is left
-  // e.keyCode == 40 is down
+  Location.all[0].stateChange = true;
   }
+
   placePackage() {
     this._hasPackage = false;
   }

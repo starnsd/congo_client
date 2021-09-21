@@ -6,6 +6,7 @@ class Van {
     this.image = this.east
     this._dx = 25;
     this._dy = 25;
+    this.speed = 6;
     this._isDriving = true;
     this.constructor.all.push(this)
   }
@@ -47,19 +48,19 @@ class Van {
     vanPos.dy = this.dy;
     switch (keyCode) {
       case 39:
-        vanPos.x += 6;
+        vanPos.x += this.speed;
         this.image = this.east;
         break;
       case 38:
-        vanPos.y -= 6;
+        vanPos.y -= this.speed;
         this.image = this.north;
         break;
       case 37:
-        vanPos.x -= 6;
+        vanPos.x -= this.speed;
         this.image = this.west;
         break;
       case 40:
-        vanPos.y += 6;
+        vanPos.y += this.speed;
         this.image = this.south;
         break;
       case 32:
@@ -72,6 +73,7 @@ class Van {
       this._x = vanPos.x;
       this._y = vanPos.y;
     }
+    Location.all[0].stateChange = true;
   }
 
   render() {
