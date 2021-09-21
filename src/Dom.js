@@ -171,7 +171,7 @@ class Dom {
         game.breakOut++
         game.score += location.timer * 2;
         orderedFunction(api.endGameFetch, "endGame", "saving score", api.user.id, game.score, api.location.id, api.user.username)
-        //location.endGameEvent();
+        location.endGameEvent();
       }
     }
   }
